@@ -196,28 +196,67 @@ footer {
 
 
 
+/* Sección Gol de la Fecha */
+.gol-fecha {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #1a1a1a; /* mismo fondo que la tabla */
+    border: 2px solid #6A0DAD; /* violeta neón */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(106, 13, 173, 0.7);
+    text-align: center;
+    color: #fff;
+}
 
-/* Animación de parpadeo */
-@keyframes neonBlink {
-    0% {
-        text-shadow:
-            0 0 5px #8A2BE2,
-            0 0 10px #8A2BE2,
-            0 0 20px #D8BFD8,
-            0 0 40px #D8BFD8;
-        opacity: 1;
+.gol-fecha h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    text-shadow:
+        0 0 5px #8A2BE2,
+        0 0 10px #8A2BE2,
+        0 0 20px #D8BFD8;
+    animation: neonBlink 2s infinite alternate;
+}
+
+.gol-container p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+}
+
+/* Video responsivo */
+.gol-video {
+    width: 600px;
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(106, 13, 173, 0.6);
+}
+
+/* 📱 Ajustes para móviles */
+@media (max-width: 720px) {
+    .gol-fecha {
+        padding: 15px;
     }
 
-    50% {
-        text-shadow:
-            0 0 3px #8A2BE2,
-            0 0 7px #D8BFD8,
-            0 0 15px #D8BFD8;
-        opacity: 0.7;
+    .gol-fecha h2 {
+        font-size: 1.5rem;
     }
 
-    100% {
-        text-shadow: none;
-        opacity: 0.4;
+    .gol-container p {
+        font-size: 1rem;
     }
+
+    .gol-video {
+        width: 100%;
+    }
+}
+
+
+
+
+audio {
+    display: none; /* oculta el reproductor */
 }
