@@ -32,6 +32,21 @@
 }
 
 
+.buscador{
+    text-align:center;
+    margin:20px 0;
+}
+
+#buscarJugador{
+    width:300px;
+    max-width:90%;
+    padding:12px;
+    border-radius:25px;
+    border:none;
+    font-size:16px;
+    outline:none;
+}
+
 /* Estilos generales ya los tenés arriba */
 
 /* Ajustes para pantallas pequeñas (teléfonos) */
@@ -126,6 +141,11 @@ body {
     color: #fff;
 }
 
+body.modo-claro{
+    background-color:white;
+    color:black;
+}
+
 header {
     background-color: transparent;
     text-align: center;
@@ -157,6 +177,20 @@ table {
     box-shadow: 0 0 20px rgba(106, 13, 173, 0.7);
     border: 2px solid #6A0DAD;
 }
+
+body.modo-claro table{
+background-color:#f5f5f5;
+color:black;
+}
+
+#tema{
+    padding:10px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+}
+
 
 th,
 td {
@@ -254,9 +288,106 @@ footer {
     }
 }
 
-
-
-
 audio {
     display: none; /* oculta el reproductor */
+}
+
+
+
+/* ========================= */
+/* MODO CLARO */
+/* ========================= */
+
+body.modo-claro{
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+/* Título */
+body.modo-claro .titulo{
+    color: #6A0DAD;
+}
+
+/* Tabla */
+body.modo-claro table{
+    background-color: #ffffff;
+    color: #222;
+}
+
+body.modo-claro td{
+    color: #222;
+    border-bottom: 1px solid #ccc;
+}
+
+body.modo-claro th{
+    background-color: #6A0DAD;
+    color: #fff;
+}
+
+body.modo-claro tr:hover{
+    background-color: #eeeeee;
+}
+
+/* Buscador */
+body.modo-claro #buscarJugador{
+    background-color: white;
+    color: #222;
+    border: 1px solid #ccc;
+}
+
+/* Resultado encontrado */
+body.modo-claro .encontrado{
+    background-color: #ffe082;
+    color: #222 !important;
+    font-weight: bold;
+}
+
+/* Puskas de la fecha */
+body.modo-claro .gol-fecha{
+    background-color: white;
+    color: #222;
+    border: 2px solid #6A0DAD;
+}
+
+body.modo-claro .gol-fecha h2{
+    color: #6A0DAD;
+}
+
+body.modo-claro .gol-container p{
+    color: #222;
+}
+
+/* Footer */
+body.modo-claro footer{
+    color: #6A0DAD;
+}
+
+/* Botón tema */
+#tema{
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    background-color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+#tema:hover{
+    transform: scale(1.1);
+}
+
+/* Botón en modo claro */
+body.modo-claro #tema{
+    background-color: #d9d9d9;
+}
+
+/* Logo más visible */
+body.modo-claro .logo{
+    filter: drop-shadow(0 0 5px rgba(106,13,173,0.3));
 }

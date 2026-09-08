@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Tabla de Goleadores - Chimuelos</title>
@@ -11,11 +12,11 @@
 <body>
     <!-- Sección Gol de la Fecha -->
     <section class="gol-fecha">
-        <h2>⚽ Top tres goles de la fecha</h2>
+        <h2>⚽ Puskas de la fecha</h2>
         <div class="gol-container">
-            <p><strong>Jugadores:</strong> Rama, Tiago y Justin</p>
-            <p><strong>Partido:</strong> Chimuelos (partido entre nosotros)</p>
-            <p><strong>Descripción:</strong> El Top 3 corresponde al partido de las 18, Mientras que los otros dos al partido de las 20.</p>
+            <p><strong>Jugadores:</strong> Nicolas Ares 🏰</p>
+            <p><strong>Partido:</strong> Chimuelos (partido entre nosotros) </p>
+            <p><strong>Descripción:</strong> Arranca por la izquierda cara a cara con leo, la pierde pero le queda a Diego que se la devuelve para que defina de taco 🪄 </p>
             <video autoplay muted loop controls class="gol-video">
                 <source src="Gol.mp4" type="video/mp4">
                 Tu navegador no soporta video.
@@ -30,8 +31,13 @@
     <div class="titulo-container">
         <img src="logo.png" alt="Logo del equipo" class="logo">
         <h1 class="titulo">Chimuelos - Tabla de Goleadores</h1>
+        <button id="tema">🌙</button>
+
     </div>
 
+    <div class="buscador">
+        <input type="text" id="buscarJugador" placeholder="🔍 Buscar jugador...">
+    </div>
     <!-- Tabla dinámica -->
     <table>
         <thead>
@@ -63,50 +69,51 @@
 
     <!-- Script para cargar Excel -->
     <script>
-    async function cargarTabla() {
-        const response = await fetch("Tabla Unificada.xlsx");
-        const data = await response.arrayBuffer();
+        async function cargarTabla() {
+            const response = await fetch("Tabla Unificada.xlsx");
+            const data = await response.arrayBuffer();
 
-        const workbook = XLSX.read(data, { type: "array" });
-        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const workbook = XLSX.read(data, { type: "array" });
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
 
-        // Convertir a JSON usando encabezados
-        const jugadores = XLSX.utils.sheet_to_json(sheet);
+            // Convertir a JSON usando encabezados
+            const jugadores = XLSX.utils.sheet_to_json(sheet);
 
-        const tbody = document.querySelector("table tbody");
-        tbody.innerHTML = "";
+            const tbody = document.querySelector("table tbody");
+            tbody.innerHTML = "";
 
-        jugadores.forEach(jugador => {
-            const nombre = jugador.Nombre;
-            const goles = jugador.Goles;
-            const partidos = jugador.PJ;
-            const posicion = jugador.posicion;
+            jugadores.forEach(jugador => {
+                const nombre = jugador.Nombre;
+                const goles = jugador.Goles;
+                const partidos = jugador.PJ;
+                const posicion = jugador.posicion;
 
-            // Calcular promedio
-            const promedio = partidos > 0 ? (goles / partidos).toFixed(2) : "0.00";
+                // Calcular promedio
+                const promedio = partidos > 0 ? (goles / partidos).toFixed(2) : "0.00";
 
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
                 <td>${nombre}</td>
                 <td>${goles}</td>
                 <td>${partidos}</td>
                 <td>${promedio}</td>
                 <td>${posicion}</td>
             `;
-            tbody.appendChild(tr);
-        });
-    }
+                tbody.appendChild(tr);
+            });
+        }
 
-    document.addEventListener("DOMContentLoaded", cargarTabla);
+        document.addEventListener("DOMContentLoaded", cargarTabla);
 
-    // Script para música al primer clic
-    document.addEventListener("click", function () {
-        const audio = document.getElementById("musica");
-        audio.play();
-    }, { once: true });
+        // Script para música al primer clic
+        document.addEventListener("click", function () {
+            const audio = document.getElementById("musica");
+            audio.play();
+        }, { once: true });
     </script>
 
     <!-- Script de scroll -->
     <script src="scroll.js"></script>
 </body>
+
 </html>
