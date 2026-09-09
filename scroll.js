@@ -51,3 +51,42 @@ botonTema.addEventListener("click", () => {
 });
 
 
+function moverChimuelo(clientX, clientY){
+
+    const x =
+        (clientX / window.innerWidth - 0.5) * 30;
+
+    const y =
+        (clientY / window.innerHeight - 0.5) * -30;
+
+    gsap.to("#chimuelos", {
+        rotationY: x,
+        rotationX: y,
+        duration: 0.5,
+        transformPerspective: 1000,
+        ease: "power2.out"
+    });
+
+}
+
+// PC
+document.addEventListener("mousemove", (e) => {
+
+    moverChimuelo(
+        e.clientX,
+        e.clientY
+    );
+
+});
+
+// Celular
+document.addEventListener("touchmove", (e) => {
+
+    const touch = e.touches[0];
+
+    moverChimuelo(
+        touch.clientX,
+        touch.clientY
+    );
+
+});
