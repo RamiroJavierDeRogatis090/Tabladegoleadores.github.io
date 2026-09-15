@@ -1,429 +1,639 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
+    color: white;
+}
+
+/* =========================
+   MODO CLARO
+========================= */
+
+body.modo-claro {
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+/* =========================
+   TITULO
+========================= */
+
 .titulo-container {
     display: flex;
     flex-direction: column;
-    /* coloca logo arriba y título abajo */
     align-items: center;
-    /* centra todo horizontalmente */
+    margin-top: 30px;
 }
 
 .logo {
     width: 80px;
-    /* tamaño del logo */
     height: auto;
-    /* mantiene proporción */
     margin-bottom: 10px;
-    /* espacio entre logo y título */
 }
 
 .titulo {
     font-family: 'Pacifico', cursive;
-    /* fuente estilo cursiva */
     font-size: 32px;
-    font-weight: normal;
-    /* no hace falta bold, la fuente ya es llamativa */
-    text-align: center;
-    color: #FFFFFF;
+    color: white;
+
     text-shadow:
         0 0 5px #8A2BE2,
         0 0 10px #8A2BE2,
         0 0 20px #D8BFD8,
         0 0 40px #D8BFD8;
+
     animation: neonBlink 2s infinite alternate;
 }
 
-
-.buscador{
-    text-align:center;
-    margin:20px 0;
+body.modo-claro .titulo {
+    color: #6A0DAD;
 }
 
-#buscarJugador{
-    width:300px;
-    max-width:90%;
-    padding:12px;
-    border-radius:25px;
-    border:none;
-    font-size:16px;
-    outline:none;
-}
+/* =========================
+   ANIMACIÓN NEÓN
+========================= */
 
-/* Estilos generales ya los tenés arriba */
+@keyframes neonBlink {
 
-/* Ajustes para pantallas pequeñas (teléfonos) */
-@media (max-width: 720px) {
-    .titulo-container {
-        flex-direction: column;
-        /* mantiene logo arriba del título */
-        align-items: center;
+    from {
+        opacity: 0.8;
     }
 
-    .logo {
-        width: 60px;
-        /* logo más chico en móviles */
-        margin-bottom: 8px;
+    to {
+        opacity: 1;
     }
 
-    .titulo {
-        font-size: 24px;
-        /* título más compacto */
-    }
-
-    h1 {
-        font-size: 2em;
-        /* reduce tamaño del h1 */
-        text-shadow:
-            0 0 3px #8A2BE2,
-            0 0 7px #D8BFD8,
-            0 0 15px #D8BFD8;
-    }
-
-    table {
-        width: 100%;
-        /* ocupa todo el ancho en móviles */
-        font-size: 14px;
-        /* texto más pequeño */
-    }
-
-    th,
-    td {
-        padding: 8px;
-        /* menos espacio para que entre bien */
-    }
-
-    footer {
-        font-size: 14px;
-        /* pie más compacto */
-    }
 }
 
+/* =========================
+   BUSCADOR
+========================= */
 
-
-/* Barra progresiva personalizada */
-/* Barra progresiva vertical */
-#progress {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 5px;
-    /* grosor */
-    height: 0;
-    /* se irá llenando */
-    background: linear-gradient(#8A2BE2, #D8BFD8);
-    z-index: 9999;
-    transition: height 0.25s;
-    /* animación suave */
-}
-
-/* Ocultar scroll nativo */
-html {
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-html::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Edge, Safari */
-}
-
-
-
-
-
-
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #0d0d0d;
-    /* fondo oscuro para resaltar el neón */
-    margin: 0;
-    padding: 0;
-    color: #fff;
-}
-
-body.modo-claro{
-    background-color:white;
-    color:black;
-}
-
-header {
-    background-color: transparent;
+.buscador {
     text-align: center;
-    padding: 20px;
+    margin: 20px 0;
 }
 
+#buscarJugador {
+    width: 300px;
+    max-width: 90%;
+    padding: 12px;
 
-h1 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #FFFFFF;
-    /* blanco principal */
-    text-shadow:
-        0 0 5px #8A2BE2,
-        /* violeta */
-        0 0 10px #8A2BE2,
-        0 0 20px #D8BFD8,
-        /* violeta claro */
-        0 0 40px #D8BFD8;
-    animation: neonBlink 2s infinite alternate;
+    border: none;
+    border-radius: 30px;
+
+    outline: none;
+
+    font-size: 16px;
 }
 
+body.modo-claro #buscarJugador {
+    border: 1px solid #ccc;
+}
+
+/* =========================
+   TABLA
+========================= */
 
 table {
-    width: 80%;
+    width: 90%;
     margin: 30px auto;
+
     border-collapse: collapse;
+
     background-color: #1a1a1a;
-    box-shadow: 0 0 20px rgba(106, 13, 173, 0.7);
+
     border: 2px solid #6A0DAD;
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 20px rgba(106, 13, 173, .6);
 }
 
-body.modo-claro table{
-background-color:#f5f5f5;
-color:black;
+body.modo-claro table {
+    background: white;
 }
-
-#tema{
-    padding:10px;
-    border:none;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:20px;
-}
-
 
 th,
 td {
     padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #333;
-    color: #fff;
 }
 
 th {
-    background-color: #6A0DAD;
-    color: #fff;
+    background: #6A0DAD;
+    color: white;
+
     text-shadow:
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 20px #6A0DAD;
+        0 0 5px white,
+        0 0 10px white;
+}
+
+td {
+    border-bottom: 1px solid #333;
+    color: white;
+}
+
+body.modo-claro td {
+    color: #222;
+    border-bottom: 1px solid #ccc;
 }
 
 tr:hover {
-    background-color: #2c2c2c;
-    box-shadow: inset 0 0 10px #6A0DAD;
+    background: #2c2c2c;
 }
 
-footer {
-    text-align: center;
-    background-color: transparent;
-    color: #6A0DAD;
-    padding: 10px;
-    margin-top: 20px;
-    text-shadow:
-        0 0 5px #6A0DAD,
-        0 0 10px #6A0DAD,
-        0 0 20px #9b59b6;
+body.modo-claro tr:hover {
+    background: #eee;
 }
 
+/* =========================
+   BARRA DE PROGRESO
+========================= */
 
+#progress {
+    position: fixed;
+    top: 0;
+    right: 0;
 
+    width: 6px;
+    height: 0;
 
+    z-index: 9999;
 
-/* Sección Gol de la Fecha */
+    border-radius: 30px;
+
+    background: linear-gradient(
+        to bottom,
+        #ffd700,
+        #8A2BE2,
+        #D8BFD8
+    );
+
+    box-shadow:
+        0 0 10px #ffd700,
+        0 0 20px #8A2BE2;
+}
+
+/* =========================
+   PUSKAS DE LA FECHA
+========================= */
+
 .gol-fecha {
     width: 90%;
     margin: 30px auto;
     padding: 20px;
-    background-color: #1a1a1a; /* mismo fondo que la tabla */
-    border: 2px solid #6A0DAD; /* violeta neón */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(106, 13, 173, 0.7);
+
     text-align: center;
-    color: #fff;
+
+    background-color: #1a1a1a;
+
+    border: 2px solid #6A0DAD;
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 15px rgba(106,13,173,.7);
 }
 
 .gol-fecha h2 {
     font-family: 'Pacifico', cursive;
     font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #FFFFFF;
+
+    color: white;
+
     text-shadow:
         0 0 5px #8A2BE2,
-        0 0 10px #8A2BE2,
-        0 0 20px #D8BFD8;
-    animation: neonBlink 2s infinite alternate;
+        0 0 15px #D8BFD8;
+}
+
+body.modo-claro .gol-fecha {
+    background: white;
+    color: #222;
+}
+
+body.modo-claro .gol-fecha h2 {
+    color: #6A0DAD;
 }
 
 .gol-container p {
-    margin: 8px 0;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
-/* Video responsivo */
 .gol-video {
     width: 600px;
     max-width: 100%;
-    border-radius: 8px;
+
     margin-top: 15px;
-    box-shadow: 0 0 10px rgba(106, 13, 173, 0.6);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 10px rgba(106,13,173,.5);
 }
 
-/* 📱 Ajustes para móviles */
-@media (max-width: 720px) {
-    .gol-fecha {
-        padding: 15px;
-    }
+/* =========================
+   MASCOTA
+========================= */
 
-    .gol-fecha h2 {
-        font-size: 1.5rem;
-    }
+.mascota-container {
+    position: relative;
 
-    .gol-container p {
-        font-size: 1rem;
-    }
-
-    .gol-video {
-        width: 100%;
-    }
-}
-
-audio {
-    display: none; /* oculta el reproductor */
-}
-
-
-
-/* ========================= */
-/* MODO CLARO */
-/* ========================= */
-
-body.modo-claro{
-    background-color: #f5f5f5;
-    color: #222;
-}
-
-/* Título */
-body.modo-claro .titulo{
-    color: #6A0DAD;
-}
-
-/* Tabla */
-body.modo-claro table{
-    background-color: #ffffff;
-    color: #222;
-}
-
-body.modo-claro td{
-    color: #222;
-    border-bottom: 1px solid #ccc;
-}
-
-body.modo-claro th{
-    background-color: #6A0DAD;
-    color: #fff;
-}
-
-body.modo-claro tr:hover{
-    background-color: #eeeeee;
-}
-
-/* Buscador */
-body.modo-claro #buscarJugador{
-    background-color: white;
-    color: #222;
-    border: 1px solid #ccc;
-}
-
-/* Resultado encontrado */
-body.modo-claro .encontrado{
-    background-color: #ffe082;
-    color: #222 !important;
-    font-weight: bold;
-}
-
-/* Puskas de la fecha */
-body.modo-claro .gol-fecha{
-    background-color: white;
-    color: #222;
-    border: 2px solid #6A0DAD;
-}
-
-body.modo-claro .gol-fecha h2{
-    color: #6A0DAD;
-}
-
-body.modo-claro .gol-container p{
-    color: #222;
-}
-
-/* Footer */
-body.modo-claro footer{
-    color: #6A0DAD;
-}
-
-/* Botón tema */
-#tema{
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
-    background-color: #e0e0e0;
-    transition: all 0.3s ease;
+
+    margin: 30px 0;
 }
 
-#tema:hover{
-    transform: scale(1.1);
-}
+#chimuelos {
+    width: 150px;
 
-/* Botón en modo claro */
-body.modo-claro #tema{
-    background-color: #d9d9d9;
-}
-
-/* Logo más visible */
-body.modo-claro .logo{
-    filter: drop-shadow(0 0 5px rgba(106,13,173,0.3));
-}
-
-
-.mascota-container{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:30px 0;
-}
-
-#chimuelos{
-    width:150px;
-    position:relative;
-    z-index:2;
+    position: relative;
+    z-index: 2;
 
     filter:
         drop-shadow(0 0 20px orange)
         drop-shadow(0 0 40px orange);
 }
 
-.glow{
-    position:absolute;
+.glow {
+    position: absolute;
 
-    width:250px;
-    height:250px;
+    width: 250px;
+    height: 250px;
 
-    background:orange;
+    background: orange;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    filter:blur(80px);
+    filter: blur(80px);
 
-    opacity:.6;
+    opacity: .5;
 
-    z-index:1;
+    z-index: 1;
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 20px;
+
+    color: #6A0DAD;
+
+    text-shadow:
+        0 0 5px #6A0DAD,
+        0 0 15px #9b59b6;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width:75%;
+    max-width: 1000px;
+
+    min-height: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: rgba(10,10,10,.92);
+    backdrop-filter: blur(15px);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 15px rgba(138,43,226,.5);
+
+    z-index: 9999;
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
+}
+
+/* para ocultarla al scrollear */
+
+.navbar.oculta{
+    transform: translateX(-50%) translateY(-120px);
+    opacity: 0;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.nav-brand{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-logo{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.nav-brand span{
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #8A2BE2,
+        0 0 20px #D8BFD8;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.nav-menu{
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 25px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li{
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a{
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    transition: .3s;
+}
+
+.nav-menu a:hover{
+    color: #FFD700;
+}
+
+/* =========================
+   BOTON TEMA (navbar)
+========================= */
+
+.theme-btn{
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #FFD700;
+
+    cursor: pointer;
+
+    font-size: 22px;
+
+    transition: .3s;
+
+    flex-shrink: 0;
+}
+
+.theme-btn:hover{
+    transform: scale(1.1);
+}
+
+/* =========================
+   BOTON HAMBURGUESA
+========================= */
+
+.nav-toggle{
+    display: none;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-size: 1.8rem;
+
+    cursor: pointer;
+
+    padding: 5px 10px;
+
+    order: 3;
+}
+
+body.modo-claro .nav-toggle{
+    color: #222;
+}
+
+/* =========================
+   ESPACIO PARA NAVBAR
+========================= */
+
+body{
+    padding-top: 110px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px){
+
+    .navbar{
+        width: 95%;
+        padding: 10px 15px;
+    }
+
+    .nav-brand span{
+        font-size: 1.5rem;
+    }
+
+    .nav-logo{
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .titulo {
+        font-size: 24px;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+    #chimuelos {
+        width: 100px;
+    }
+
+    table {
+        width: 98%;
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 6px;
+    }
+
+    .gol-video {
+        width: 100%;
+    }
+
+    #buscarJugador {
+        width: 90%;
+    }
+
+    /* --- Navbar con menú hamburguesa --- */
+
+    .navbar{
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .nav-toggle{
+        display: block;
+    }
+
+    .theme-btn{
+        order: 2;
+    }
+
+    .nav-menu{
+        order: 4;
+
+        flex-basis: 100%;
+        flex-direction: column;
+
+        max-height: 0;
+        overflow: hidden;
+
+        gap: 0;
+
+        transition: max-height .35s ease;
+    }
+
+    .nav-menu.activo{
+        max-height: 300px;
+        padding-top: 15px;
+    }
+
+    .nav-menu li{
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav-menu a{
+        font-size: 1.1rem;
+    }
+
+}
+body.modo-claro .nav-toggle{
+    color: #6A0DAD;
+}
+body.modo-claro .nav-toggle{
+    color: #6A0DAD;
+}
+
+/* =========================
+   NOSOTROS
+========================= */
+
+.nosotros{
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 40px auto;
+    padding: 25px;
+
+    text-align: center;
+
+    background: #1a1a1a;
+
+    border: 2px solid #6A0DAD;
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 15px rgba(138,43,226,.4);
+}
+
+.nosotros h2{
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+
+    margin-bottom: 20px;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #8A2BE2,
+        0 0 20px #D8BFD8;
+}
+
+.nosotros p{
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+body.modo-claro .nosotros h2{
+    color: #6A0DAD;
+
+    text-shadow:
+        0 0 5px #8A2BE2,
+        0 0 10px #D8BFD8;
+}
+
+body.modo-claro .nosotros{
+    background: white;
+}
+
+body.modo-claro .nosotros p{
+    color: #222;
 }

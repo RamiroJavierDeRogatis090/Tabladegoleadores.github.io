@@ -3,54 +3,80 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tabla de Goleadores - Chimuelos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Goleadores - Chimuelos FC</title>
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <!-- Sección Gol de la Fecha -->
-    <section class="gol-fecha">
-        <h2>⚽ Puskas de la fecha</h2>
-        <div class="gol-container">
-            <p><strong>Jugador:</strong> Nicolas Ares 🏰</p>
-            <p><strong>Partido:</strong> Chimuelos (partido entre nosotros) </p>
-            <p><strong>Descripción:</strong> Arranca por la izquierda cara a cara con leo, la pierde pero le queda a Diego que se la devuelve para que defina de taco 🪄 </p>
-            <video autoplay muted loop controls class="gol-video">
-                <source src="Gol.mp4" type="video/mp4">
-                Tu navegador no soporta video.
-            </video>
+
+    <nav class="navbar">
+
+        <div class="nav-brand">
+            <img src="logo.png" alt="Logo" class="nav-logo">
+            <span>Chimuelos</span>
         </div>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#puskas">Puskas</a></li>
+            <li><a href="#qs">¿Quienes somos?</a></li>
+            <li><a href="#tabla-goleadores">Tabla</a></li>
+            <li><a href="#buscador">Buscador</a></li>
+        </ul>
+
+        <button id="navToggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+        <button id="tema" class="theme-btn">🌙</button>
+
+    </nav>
+
+
+    <!-- Barra progreso -->
+    <div id="progress"></div>
+
+    <section class="nosotros" id="qs">
+        <h2>💜 ¿Quiénes Somos?</h2>
+
+        <p>
+            Chimuelos FC es mucho más que un equipo de fútbol.
+            Somos un grupo de amigos que comparte la pasión por la pelota,
+            la competencia sana y los buenos momentos dentro y fuera de la cancha.
+        </p>
+
+        <p>
+            Esta página nació para registrar nuestras estadísticas,
+            recordar los mejores goles, destacar a nuestros jugadores
+            y mantener viva la historia de cada partido que disputamos.
+        </p>
+
     </section>
 
-    <!-- Barra de progreso -->
-    <div id="progress"></div>
 
     <!-- Título -->
     <div class="titulo-container">
-        <img src="logo.png" alt="Logo del equipo" class="logo">
-        <h1 class="titulo">Chimuelos - Tabla de Goleadores</h1>
-        <button id="tema">🌙</button>
+        <h1 class="titulo">Tabla de Goleadores</h1>
+    </div>
+
+
+
+    <!-- Mascota -->
+    <div class="mascota-container">
+
+        <div class="glow"></div>
+
+        <img src="chimuelo.png" alt="Mascota Chimuelos" id="chimuelos">
 
     </div>
 
-      <div class="mascota-container">
-
-    <div class="glow"></div>
-
-    <img
-        src="chimuelo.png"
-        alt="Mascota Chimuelos"
-        id="chimuelos">
-
-</div>
-
-    <div class="buscador">
+    <!-- Buscador -->
+    <div class="buscador" id="buscador">
         <input type="text" id="buscarJugador" placeholder="🔍 Buscar jugador...">
     </div>
-    <!-- Tabla dinámica -->
-    <table>
+
+    <!-- Tabla -->
+    <table id="tabla-goleadores">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -60,14 +86,36 @@
                 <th>Posición</th>
             </tr>
         </thead>
+
         <tbody>
-            <!-- Aquí se insertan las filas automáticamente -->
+            <!-- Se carga automáticamente -->
         </tbody>
     </table>
 
-    <!-- Música de fondo -->
+    <!-- Gol de la fecha -->
+    <section class="gol-fecha" id="puskas">
+        <h2>⚽ Puskas de la fecha</h2>
+
+        <div class="gol-container">
+            <p><strong>Jugador:</strong> Nicolas Ares 🏰</p>
+
+            <p><strong>Partido:</strong> Chimuelos (partido entre nosotros)</p>
+
+            <p>
+                <strong>Descripción:</strong>
+                Nico la peina de cabeza luego de un pase de seba.
+            </p>
+
+            <video autoplay muted loop controls class="gol-video">
+                <source src="Gol.mp4" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </div>
+    </section>
+
+    <!-- Música -->
     <audio id="musica" loop>
-        <source src="musica_fondo.mp3" type="audio/mp3">
+        <source src="musica_fondo.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Footer -->
@@ -75,56 +123,135 @@
         © 2026 Chimuelos FC - Todos los derechos reservados
     </footer>
 
-    <!-- Librería SheetJS -->
+    <!-- Librerías -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-    <!-- Script para cargar Excel -->
+    <!-- Script principal -->
     <script>
+
         async function cargarTabla() {
-            const response = await fetch("Tabla Unificada.xlsx");
-            const data = await response.arrayBuffer();
 
-            const workbook = XLSX.read(data, { type: "array" });
-            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            try {
 
-            // Convertir a JSON usando encabezados
-            const jugadores = XLSX.utils.sheet_to_json(sheet);
+                const response = await fetch("Tabla Unificada.xlsx");
+                const data = await response.arrayBuffer();
 
-            const tbody = document.querySelector("table tbody");
-            tbody.innerHTML = "";
+                const workbook = XLSX.read(data, {
+                    type: "array"
+                });
 
-            jugadores.forEach(jugador => {
-                const nombre = jugador.Nombre;
-                const goles = jugador.Goles;
-                const partidos = jugador.PJ;
-                const posicion = jugador.posicion;
+                const sheet = workbook.Sheets[workbook.SheetNames[0]];
 
-                // Calcular promedio
-                const promedio = partidos > 0 ? (goles / partidos).toFixed(2) : "0.00";
+                const jugadores = XLSX.utils.sheet_to_json(sheet);
 
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                <td>${nombre}</td>
-                <td>${goles}</td>
-                <td>${partidos}</td>
-                <td>${promedio}</td>
-                <td>${posicion}</td>
-            `;
-                tbody.appendChild(tr);
-            });
+                const tbody = document.querySelector("#tabla-goleadores tbody");
+
+                tbody.innerHTML = "";
+
+                jugadores.forEach(jugador => {
+
+                    const nombre = jugador.Nombre || "";
+                    const goles = jugador.Goles || 0;
+                    const partidos = jugador.PJ || 0;
+                    const posicion = jugador.posicion || "";
+
+                    const promedio =
+                        partidos > 0
+                            ? (goles / partidos).toFixed(2)
+                            : "0.00";
+
+                    const fila = document.createElement("tr");
+
+                    fila.innerHTML = `
+                        <td>${nombre}</td>
+                        <td>${goles}</td>
+                        <td>${partidos}</td>
+                        <td>${promedio}</td>
+                        <td>${posicion}</td>
+                    `;
+
+                    tbody.appendChild(fila);
+                });
+
+            } catch (error) {
+
+                console.error("Error cargando Excel:", error);
+
+            }
         }
 
-        document.addEventListener("DOMContentLoaded", cargarTabla);
+        document.addEventListener(
+            "DOMContentLoaded",
+            cargarTabla
+        );
 
-        // Script para música al primer clic
-        document.addEventListener("click", function () {
+        // Música al primer clic
+        document.addEventListener("click", () => {
+
             const audio = document.getElementById("musica");
-            audio.play();
+
+            audio.play().catch(err => {
+                console.log(err);
+            });
+
         }, { once: true });
+
+        // Buscador
+        document.getElementById("buscarJugador")
+            .addEventListener("keyup", function () {
+
+                let texto = this.value.toLowerCase();
+
+                let filas = document.querySelectorAll(
+                    "#tabla-goleadores tbody tr"
+                );
+
+                filas.forEach(fila => {
+
+                    let nombre =
+                        fila.cells[0].textContent.toLowerCase();
+
+                    fila.style.display =
+                        nombre.includes(texto)
+                            ? ""
+                            : "none";
+
+                });
+
+            });
+
+        // Menú hamburguesa
+        const navToggle = document.getElementById("navToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        navToggle.addEventListener("click", () => {
+
+            const abierto = navMenu.classList.toggle("activo");
+
+            navToggle.setAttribute("aria-expanded", abierto);
+            navToggle.textContent = abierto ? "✕" : "☰";
+
+        });
+
+        // Cierra el menú al tocar un link (mobile)
+        navMenu.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navMenu.classList.remove("activo");
+                navToggle.setAttribute("aria-expanded", "false");
+                navToggle.textContent = "☰";
+
+            });
+
+        });
+
     </script>
 
-    <!-- Script de scroll -->
+    <!-- Scroll -->
     <script src="scroll.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script></body>
+
+</body>
 
 </html>
