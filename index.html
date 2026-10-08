@@ -4,123 +4,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla de goleadores, estadísticas y Puskás de la fecha del Chimuelos FC.">
+    <meta name="theme-color" content="#0d0d0d">
     <title>Tabla de Goleadores - Chimuelos FC</title>
 
+    <script>
+        try {
+            if (localStorage.getItem("tema") === "claro") {
+                document.documentElement.classList.add("modo-claro");
+            }
+        } catch (e) { }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <nav class="navbar">
-
-        <div class="nav-brand">
-            <img src="logo.png" alt="Logo" class="nav-logo">
-            <span>Chimuelos</span>
-        </div>
-
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#puskas">Puskas</a></li>
-            <li><a href="#qs">¿Quienes somos?</a></li>
-            <li><a href="#tabla-goleadores">Tabla</a></li>
-            <li><a href="#buscador">Buscador</a></li>
-        </ul>
-
-        <button id="navToggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
-
-        <button id="tema" class="theme-btn">🌙</button>
-
-    </nav>
-
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
 
     <!-- Barra progreso -->
     <div id="progress"></div>
 
-    <section class="nosotros" id="qs">
-        <h2>💜 ¿Quiénes Somos?</h2>
+    <nav class="navbar" id="navbar">
 
-        <p>
-            Chimuelos FC es mucho más que un equipo de fútbol.
-            Somos un grupo de amigos que comparte la pasión por la pelota,
-            la competencia sana y los buenos momentos dentro y fuera de la cancha.
-        </p>
-
-        <p>
-            Esta página nació para registrar nuestras estadísticas,
-            recordar los mejores goles, destacar a nuestros jugadores
-            y mantener viva la historia de cada partido que disputamos.
-        </p>
-
-    </section>
-
-
-    <!-- Título -->
-    <div class="titulo-container">
-        <h1 class="titulo">Tabla de Goleadores</h1>
-    </div>
-
-
-
-    <!-- Mascota -->
-    <div class="mascota-container">
-
-        <div class="glow"></div>
-
-        <img src="chimuelo.png" alt="Mascota Chimuelos" id="chimuelos">
-
-    </div>
-
-    <!-- Buscador -->
-    <div class="buscador" id="buscador">
-        <input type="text" id="buscarJugador" placeholder="🔍 Buscar jugador...">
-    </div>
-
-    <!-- Tabla -->
-    <table id="tabla-goleadores">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Goles</th>
-                <th>Partidos</th>
-                <th>Promedio</th>
-                <th>Posición</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <!-- Se carga automáticamente -->
-        </tbody>
-    </table>
-
-    <!-- Gol de la fecha -->
-    <section class="gol-fecha" id="puskas">
-        <h2>⚽ Puskas de la fecha</h2>
-
-        <div class="gol-container">
-            <p><strong>Jugador:</strong> Nicolas Ares 🏰</p>
-
-            <p><strong>Partido:</strong> Chimuelos (partido entre nosotros)</p>
-
-            <p>
-                <strong>Descripción:</strong>
-                Nico la peina de cabeza luego de un pase de seba.
-            </p>
-
-            <video autoplay muted loop controls class="gol-video">
-                <source src="Gol.mp4" type="video/mp4">
-                Tu navegador no soporta video.
-            </video>
+        <div class="nav-brand">
+            <img src="logo.png" alt="Logo de Chimuelos FC" class="nav-logo">
+            <span>Chimuelos</span>
         </div>
-    </section>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#qs">¿Quiénes somos?</a></li>
+            <li><a href="#tabla-goleadores">Tabla</a></li>
+            <li><a href="#puskas">Puskás</a></li>
+        </ul>
+
+        <div class="nav-acciones">
+            <button id="musicaBtn" class="icon-btn" aria-label="Pausar música" title="Pausar música">🎵</button>
+            <button id="tema" class="theme-btn" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema">🌙</button>
+            <button id="navToggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        </div>
+
+    </nav>
+
+    <main id="contenido">
+
+        <!-- HERO -->
+        <header class="hero" id="inicio">
+
+            <div class="hero-texto">
+                <p class="hero-kicker">Chimuelos FC · Temporada 2026</p>
+
+                <h1 class="titulo">Tabla de Goleadores</h1>
+
+                <p class="hero-sub">
+                    Estadísticas, récords y el mejor gol de cada fecha,
+                    todo lo que pasó dentro y fuera de la cancha.
+                </p>
+
+                <div class="hero-acciones">
+                    <a class="btn btn-primario" href="#tabla-goleadores">Ver tabla</a>
+                    <a class="btn btn-ghost" href="#puskas">Puskás de la fecha</a>
+                </div>
+            </div>
+
+            <div class="mascota-container">
+                <div class="glow"></div>
+                <img src="chimuelo.png" alt="Mascota de Chimuelos FC" id="chimuelos">
+            </div>
+
+        </header>
+
+        <!-- NOSOTROS -->
+        <section class="nosotros tarjeta" id="qs">
+
+            <div class="nosotros-texto">
+                <p class="seccion-kicker">El club</p>
+                <h2>💜 ¿Quiénes somos?</h2>
+
+                <p>
+                    Chimuelos FC es mucho más que un equipo de fútbol.
+                    Somos un grupo de amigos que comparte la pasión por la pelota,
+                    la competencia sana y los buenos momentos dentro y fuera de la cancha.
+                </p>
+
+                <p>
+                    Esta página nació para registrar nuestras estadísticas,
+                    recordar los mejores goles, destacar a nuestros jugadores
+                    y mantener viva la historia de cada partido que disputamos.
+                </p>
+            </div>
+
+            <aside class="nosotros-aside">
+                <img src="logo.png" alt="Escudo de Chimuelos FC" class="aside-logo">
+                <ul class="valores">
+                    <li>⚽ Pasión por el fútbol</li>
+                    <li>🤝 Amistad primero</li>
+                    <li>📈 Estadísticas al día</li>
+                </ul>
+            </aside>
+
+        </section>
+
+        <!-- TABLA -->
+        <section class="tabla-seccion" id="tabla">
+
+            <div class="seccion-head">
+                <p class="seccion-kicker">Las cifras</p>
+                <h2 class="seccion-titulo">📈 Goleadores</h2>
+            </div>
+
+            <!-- Buscador -->
+            <div class="buscador" id="buscador">
+                <label class="buscador-label" for="buscarJugador">Buscar jugador</label>
+
+                <div class="buscador-caja">
+                    <span class="buscador-icono" aria-hidden="true">🔍</span>
+                    <input type="search" id="buscarJugador" placeholder="Escribí un nombre o posición..."
+                        autocomplete="off">
+                    <button type="button" id="limpiarBusqueda" class="buscador-limpiar" aria-label="Limpiar búsqueda"
+                        hidden>✕</button>
+                </div>
+
+                <p class="buscador-contador" id="contadorJugadores" aria-live="polite">Cargando jugadores…</p>
+            </div>
+
+            <!-- Tabla -->
+            <div class="tabla-wrap">
+                <table id="tabla-goleadores">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"><button type="button" class="th-btn" data-orden="nombre">Nombre<span class="flecha"></span></button></th>
+                            <th scope="col"><button type="button" class="th-btn" data-orden="goles">Goles<span class="flecha"></span></button></th>
+                            <th scope="col"><button type="button" class="th-btn" data-orden="partidos">Partidos<span class="flecha"></span></button></th>
+                            <th scope="col"><button type="button" class="th-btn" data-orden="promedio">Promedio<span class="flecha"></span></button></th>
+                            <th scope="col"><button type="button" class="th-btn" data-orden="posicion">Posición<span class="flecha"></span></button></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="fila-vacia">⏳ Cargando jugadores…</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="tabla-hint">➡️ Deslizá la tabla si no entra en pantalla</p>
+
+        </section>
+
+        <!-- PUSKAS -->
+        <section class="gol-fecha tarjeta" id="puskas">
+
+            <div class="seccion-head">
+                <p class="seccion-kicker">Gol de la fecha</p>
+                <h2 class="seccion-titulo">⚽ Puskás de la fecha</h2>
+            </div>
+
+            <div class="gol-container">
+
+                <div class="gol-datos">
+                    <div class="dato">
+                        <span class="dato-label">Jugador</span>
+                        <span class="dato-valor">Nicolas Ares 🏰</span>
+                    </div>
+
+                    <div class="dato">
+                        <span class="dato-label">Partido</span>
+                        <span class="dato-valor">Chimuelos (partido entre nosotros)</span>
+                    </div>
+
+                    <div class="dato dato-desc">
+                        <span class="dato-label">Descripción</span>
+                        <span class="dato-valor">Nico la peina de cabeza luego de un pase de Seba.</span>
+                    </div>
+
+                    <span class="chip chip-dorado">🏆 Gol del mes</span>
+                </div>
+
+                <video autoplay muted loop controls class="gol-video" poster="logo.png">
+                    <source src="Gol.mp4" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+
+            </div>
+        </section>
+
+    </main>
 
     <!-- Música -->
     <audio id="musica" loop>
         <source src="musica_fondo.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Volver arriba -->
+    <button id="volverArriba" class="volver-arriba" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
     <!-- Footer -->
     <footer>
-        © 2026 Chimuelos FC - Todos los derechos reservados
+        <p class="footer-marca">Chimuelos FC</p>
+        <p class="footer-copy">© 2026 Chimuelos FC - Todos los derechos reservados</p>
     </footer>
 
     <!-- Librerías -->
@@ -130,6 +219,94 @@
     <!-- Script principal -->
     <script>
 
+        const tbody = document.querySelector("#tabla-goleadores tbody");
+        const contador = document.getElementById("contadorJugadores");
+        const inputBuscar = document.getElementById("buscarJugador");
+        const btnLimpiar = document.getElementById("limpiarBusqueda");
+
+        let jugadores = [];
+        let textoBusqueda = "";
+        let ordenActual = { campo: "goles", dir: "desc" };
+
+        function escapar(texto) {
+            return String(texto)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function promedioDe(j) {
+            return j.partidos > 0 ? (j.goles / j.partidos).toFixed(2) : "0.00";
+        }
+
+        function ordenar(lista) {
+            const { campo, dir } = ordenActual;
+            const mult = dir === "asc" ? 1 : -1;
+
+            return [...lista].sort((a, b) => {
+
+                let r;
+
+                if (campo === "nombre" || campo === "posicion") {
+                    r = a[campo].localeCompare(b[campo], "es");
+                } else if (campo === "promedio") {
+                    r = parseFloat(promedioDe(a)) - parseFloat(promedioDe(b));
+                } else {
+                    r = a[campo] - b[campo];
+                }
+
+                if (r === 0) r = a.nombre.localeCompare(b.nombre, "es");
+
+                return r * mult;
+            });
+        }
+
+        function render() {
+
+            const filtro = textoBusqueda.trim().toLowerCase();
+
+            const filtrados = jugadores.filter(j =>
+                j.nombre.toLowerCase().includes(filtro) ||
+                j.posicion.toLowerCase().includes(filtro)
+            );
+
+            const lista = ordenar(filtrados);
+
+            tbody.innerHTML = "";
+
+            if (!lista.length) {
+                tbody.innerHTML =
+                    `<tr><td colspan="6" class="fila-vacia">😕 No encontramos jugadores para
+                    “${escapar(textoBusqueda)}”</td></tr>`;
+            }
+
+            lista.forEach((j, indice) => {
+
+                const prom = promedioDe(j);
+                const puesto = indice + 1;
+                const clasePuesto = puesto <= 3 ? ` medalla m${puesto}` : "";
+                const claseProm = parseFloat(prom) >= 1 ? " alta" : (parseFloat(prom) > 0 ? " baja" : "");
+
+                const fila = document.createElement("tr");
+
+                fila.innerHTML = `
+                    <td class="celda-puesto"><span class="puesto${clasePuesto}">${puesto}</span></td>
+                    <td class="celda-nombre">${escapar(j.nombre)}</td>
+                    <td><strong class="num-goles">${j.goles}</strong></td>
+                    <td>${j.partidos}</td>
+                    <td><span class="prom${claseProm}">${prom}</span></td>
+                    <td><span class="chip">${escapar(j.posicion) || "—"}</span></td>
+                `;
+
+                tbody.appendChild(fila);
+            });
+
+            contador.textContent = filtro
+                ? `${lista.length} de ${jugadores.length} jugadores`
+                : `${jugadores.length} jugadores en la tabla`;
+        }
+
         async function cargarTabla() {
 
             try {
@@ -137,89 +314,108 @@
                 const response = await fetch("Tabla Unificada.xlsx");
                 const data = await response.arrayBuffer();
 
-                const workbook = XLSX.read(data, {
-                    type: "array"
-                });
-
+                const workbook = XLSX.read(data, { type: "array" });
                 const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                const filas = XLSX.utils.sheet_to_json(sheet);
 
-                const jugadores = XLSX.utils.sheet_to_json(sheet);
+                jugadores = filas.map(f => ({
 
-                const tbody = document.querySelector("#tabla-goleadores tbody");
+                    nombre: String(f.Nombre ?? "").trim(),
+                    goles: Number(f.Goles) || 0,
+                    partidos: Number(f.PJ) || 0,
+                    posicion: String(f.posicion ?? f.Posicion ?? f.Posición ?? "").trim()
 
-                tbody.innerHTML = "";
+                })).filter(j => j.nombre !== "");
 
-                jugadores.forEach(jugador => {
-
-                    const nombre = jugador.Nombre || "";
-                    const goles = jugador.Goles || 0;
-                    const partidos = jugador.PJ || 0;
-                    const posicion = jugador.posicion || "";
-
-                    const promedio =
-                        partidos > 0
-                            ? (goles / partidos).toFixed(2)
-                            : "0.00";
-
-                    const fila = document.createElement("tr");
-
-                    fila.innerHTML = `
-                        <td>${nombre}</td>
-                        <td>${goles}</td>
-                        <td>${partidos}</td>
-                        <td>${promedio}</td>
-                        <td>${posicion}</td>
-                    `;
-
-                    tbody.appendChild(fila);
-                });
+                render();
 
             } catch (error) {
 
                 console.error("Error cargando Excel:", error);
 
+                tbody.innerHTML =
+                    `<tr><td colspan="6" class="fila-vacia">⚠️ No se pudo cargar la tabla.
+                    Revisá el archivo Excel.</td></tr>`;
+
+                contador.textContent = "Error al cargar los jugadores";
             }
         }
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            cargarTabla
-        );
+        document.addEventListener("DOMContentLoaded", cargarTabla);
 
-        // Música al primer clic
+        // Buscador
+        inputBuscar.addEventListener("input", function () {
+            textoBusqueda = this.value;
+            btnLimpiar.hidden = !this.value;
+            render();
+        });
+
+        btnLimpiar.addEventListener("click", () => {
+            inputBuscar.value = "";
+            textoBusqueda = "";
+            btnLimpiar.hidden = true;
+            inputBuscar.focus();
+            render();
+        });
+
+        // Orden por columnas
+        document.querySelectorAll(".th-btn").forEach(btn => {
+
+            btn.addEventListener("click", () => {
+
+                const campo = btn.dataset.orden;
+
+                if (ordenActual.campo === campo) {
+                    ordenActual.dir = ordenActual.dir === "asc" ? "desc" : "asc";
+                } else {
+                    ordenActual.campo = campo;
+                    ordenActual.dir = (campo === "nombre" || campo === "posicion") ? "asc" : "desc";
+                }
+
+                document.querySelectorAll("th").forEach(th => th.classList.remove("orden-asc", "orden-desc"));
+                btn.closest("th").classList.add(ordenActual.dir === "asc" ? "orden-asc" : "orden-desc");
+
+                render();
+            });
+        });
+
+        // Música
+        const audio = document.getElementById("musica");
+        const btnMusica = document.getElementById("musicaBtn");
+        let sonando = false;
+
+        function actualizarBotonMusica() {
+            btnMusica.textContent = sonando ? "🎵" : "🔇";
+            btnMusica.setAttribute("aria-label", sonando ? "Pausar música" : "Reproducir música");
+            btnMusica.title = sonando ? "Pausar música" : "Reproducir música";
+        }
+
         document.addEventListener("click", () => {
 
-            const audio = document.getElementById("musica");
+            if (sonando) return;
 
-            audio.play().catch(err => {
-                console.log(err);
-            });
+            audio.play().then(() => {
+                sonando = true;
+                actualizarBotonMusica();
+            }).catch(err => console.log(err));
 
         }, { once: true });
 
-        // Buscador
-        document.getElementById("buscarJugador")
-            .addEventListener("keyup", function () {
+        btnMusica.addEventListener("click", e => {
 
-                let texto = this.value.toLowerCase();
+            e.stopPropagation();
 
-                let filas = document.querySelectorAll(
-                    "#tabla-goleadores tbody tr"
-                );
+            if (audio.paused) {
+                audio.play().then(() => { sonando = true; actualizarBotonMusica(); })
+                    .catch(err => console.log(err));
+            } else {
+                audio.pause();
+                sonando = false;
+                actualizarBotonMusica();
+            }
+        });
 
-                filas.forEach(fila => {
-
-                    let nombre =
-                        fila.cells[0].textContent.toLowerCase();
-
-                    fila.style.display =
-                        nombre.includes(texto)
-                            ? ""
-                            : "none";
-
-                });
-
-            });
+        actualizarBotonMusica();
 
         // Menú hamburguesa
         const navToggle = document.getElementById("navToggle");
@@ -231,25 +427,20 @@
 
             navToggle.setAttribute("aria-expanded", abierto);
             navToggle.textContent = abierto ? "✕" : "☰";
-
         });
 
-        // Cierra el menú al tocar un link (mobile)
         navMenu.querySelectorAll("a").forEach(link => {
 
             link.addEventListener("click", () => {
-
                 navMenu.classList.remove("activo");
                 navToggle.setAttribute("aria-expanded", "false");
                 navToggle.textContent = "☰";
-
             });
-
         });
 
     </script>
 
-    <!-- Scroll -->
+    <!-- Scroll, tema y animaciones -->
     <script src="scroll.js"></script>
 
 </body>

@@ -1,63 +1,99 @@
-window.onscroll = function() {
-  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (scrollTop / scrollHeight) * 100;
-  document.getElementById("progress").style.height = scrolled + "%";
-};
+/* =========================
+   BARRA DE PROGRESO
+   ========================= */
 
-document.addEventListener("input", function(e){
+const barraProgreso = document.getElementById("progress");
+const btnVolverArriba = document.getElementById("volverArriba");
 
-    if(e.target.id === "buscarJugador"){
+function actualizarScroll() {
 
-        const texto = e.target.value.toLowerCase();
-        const filas = document.querySelectorAll("tbody tr");
+    const max = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-        filas.forEach(fila => {
+    const porcentaje = max > 0 ? (scrollTop / max) * 100 : 0;
 
-            const nombre = fila.cells[0].textContent.toLowerCase();
+    barraProgreso.style.width = porcentaje + "%";
 
-            if(nombre.includes(texto)){
-                fila.style.display = "";
-                fila.classList.add("encontrado");
-            }
-            else{
-                fila.style.display = "none";
-                fila.classList.remove("encontrado");
-            }
+    btnVolverArriba.classList.toggle("visible", scrollTop > 450);
+}
 
-            if(texto === ""){
-                fila.style.display = "";
-                fila.classList.remove("encontrado");
-            }
-        });
-    }
+window.addEventListener("scroll", actualizarScroll, { passive: true });
+window.addEventListener("resize", actualizarScroll);
+actualizarScroll();
+
+btnVolverArriba.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-
+/* =========================
+   TEMA CLARO / OSCURO
+   ========================= */
 
 const botonTema = document.getElementById("tema");
 
+function pintarBotonTema() {
+    const claro = document.documentElement.classList.contains("modo-claro");
+    botonTema.textContent = claro ? "☀️" : "🌙";
+    botonTema.title = claro ? "Modo oscuro" : "Modo claro";
+}
+
 botonTema.addEventListener("click", () => {
 
-    document.body.classList.toggle("modo-claro");
+    document.documentElement.classList.toggle("modo-claro");
 
-    if(document.body.classList.contains("modo-claro")){
-        botonTema.textContent = "☀️";
-    }
-    else{
-        botonTema.textContent = "🌙";
-    }
+    try {
+        const claro = document.documentElement.classList.contains("modo-claro");
+        localStorage.setItem("tema", claro ? "claro" : "oscuro");
+    } catch (e) { }
 
+    pintarBotonTema();
 });
 
+pintarBotonTema();
 
-function moverChimuelo(clientX, clientY){
+/* =========================
+   LINK ACTIVO AL SCROLLEAR
+   ========================= */
 
-    const x =
-        (clientX / window.innerWidth - 0.5) * 30;
+const links = [...document.querySelectorAll(".nav-menu a")];
 
-    const y =
-        (clientY / window.innerHeight - 0.5) * -30;
+const secciones = links
+    .map(a => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+if ("IntersectionObserver" in window && secciones.length) {
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            links.forEach(a => {
+                a.classList.toggle(
+                    "activo",
+                    a.getAttribute("href") === "#" + entry.target.id
+                );
+            });
+        });
+
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    secciones.forEach(sec => observer.observe(sec));
+}
+
+/* =========================
+   MASCOTA QUE SIGUE EL MOUSE
+   ========================= */
+
+const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function moverChimuelo(clientX, clientY) {
+
+    if (sinMovimiento || typeof gsap === "undefined") return;
+
+    const x = (clientX / window.innerWidth - 0.5) * 30;
+    const y = (clientY / window.innerHeight - 0.5) * -30;
 
     gsap.to("#chimuelos", {
         rotationY: x,
@@ -66,27 +102,11 @@ function moverChimuelo(clientX, clientY){
         transformPerspective: 1000,
         ease: "power2.out"
     });
-
 }
 
-// PC
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => moverChimuelo(e.clientX, e.clientY));
 
-    moverChimuelo(
-        e.clientX,
-        e.clientY
-    );
-
-});
-
-// Celular
-document.addEventListener("touchmove", (e) => {
-
+document.addEventListener("touchmove", e => {
     const touch = e.touches[0];
-
-    moverChimuelo(
-        touch.clientX,
-        touch.clientY
-    );
-
-});
+    moverChimuelo(touch.clientX, touch.clientY);
+}, { passive: true });
